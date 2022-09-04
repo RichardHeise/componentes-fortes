@@ -36,18 +36,32 @@ static int buscaVetor(vertice vetor[], vertice elem, int tam) {
 
     return 0;
 }
-static void decompAux(grafo g, verticePP* vertices, verticePP r, int c, int tam ) {
-    r.estado = 1;
+
+//------------------------------------------------------------------------------
+
+static void decompAux(grafo g, verticePP* vertices, verticePP* r, int c, int tam) {
+
+    if (r->estado == 2) {
+        return;
+    }
+
+    r->estado = 1;
+
     for (int i = 0; i < tam; i++) {
-        if ( agedge(g, r.nodo, vertices[i].nodo, NULL, FALSE)) {
-            if (!vertices[i].estado) {
-                decompAux(g, vertices, vertices[i], c, tam);
-            }
+        if ( agedge(g, vertices[i].nodo, r->nodo , NULL, FALSE) ) {
+
+            if (vertices[i].estado == 0) {
+                decompAux(g, vertices, &vertices[i], c, tam);
+            } 
         }
     }
-    r.componente = c;
-    r.estado = 2;
+
+    r->componente = c;
+    r->estado = 2;
+    
 }
+
+//------------------------------------------------------------------------------
 
 grafo decompoe(grafo g) {
 
@@ -56,24 +70,32 @@ grafo decompoe(grafo g) {
     int tam = agnnodes(g);
 
     vertice pilha[tam];
+
     int j = 0;
     vertice visitados[tam];
+    int k;
+    vertice pos[tam];
 
     for (vertice atual = agfstnode(g); atual; atual = agnxtnode(g, atual)) {
 
         int i = 0;
-
+        
+        memset(pos, 0, sizeof(vertice));
+        k = 0;
+        
         memset(pilha, 0, sizeof(vertice));
         pilha[i] = atual;
         i++;
+
         while (i) {
 
             i--;
             vertice topo = pilha[i];
 
             if ( !buscaVetor(visitados, topo, j) ) {
+
                 for (vertice ver = agfstnode(g); ver; ver = agnxtnode(g, ver)) {
-                    if ( agedge(g, topo, ver, NULL, FALSE)) {
+                    if ( agedge(g, topo, ver, NULL, FALSE) ) {
                         
                         if ( !buscaVetor(visitados, ver, j) ) {
                             pilha[i] = ver; 
@@ -82,16 +104,17 @@ grafo decompoe(grafo g) {
                     }
                 }
 
+                pos[k++] = topo;
                 visitados[j] = topo;
                 j++;
-
             }
         }
+
     }
 
     printf("pos-order?:\n");
-    for (int i = 0; i < j; i++) {
-        printf("%s ", agnameof(visitados[i]));
+    for (int i = 0; i < tam; i++) {
+        printf("%s ", agnameof(pos[i]));
     }
     printf("\n");
 
@@ -105,10 +128,14 @@ grafo decompoe(grafo g) {
 
     for (int i = 0; i < tam; i++) {
         if (!vertices[i].estado) {
-            decompAux(g, vertices, vertices[i], ++c, tam);
+            c += 1;
+            decompAux(g, vertices, &vertices[i], c, tam);
         }
     }
 
+    for (int i = 0; i < tam; i++) {
+        printf("vértice: %s, estado: %d, componente: %d\n", agnameof(vertices[i].nodo), vertices[i].estado, vertices[i].componente);
+    }
 
     return g;
 }

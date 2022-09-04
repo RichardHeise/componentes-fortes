@@ -15,7 +15,7 @@ grafo le_grafo(void);
 // -----------------------------------------------------------------------------
 // desaloca g
 
-void destroi_grafo(grafo g);
+int destroi_grafo(grafo g);
 
 // -----------------------------------------------------------------------------
 // escreve g na saída padrão em formato dot
