@@ -1,5 +1,12 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "grafo.h"
+
+typedef struct verticePP_s {
+    vertice nodo;
+    int estado;
+    int componente;
+} verticePP;
 
 //------------------------------------------------------------------------------
 grafo le_grafo(void) {
@@ -7,7 +14,7 @@ grafo le_grafo(void) {
     return agread(stdin, NULL); 
 }
 //------------------------------------------------------------------------------
-void destroi_grafo(grafo g) {
+int destroi_grafo(grafo g) {
   
     agclose(g);
     return 1;
@@ -29,6 +36,18 @@ static int buscaVetor(vertice vetor[], vertice elem, int tam) {
 
     return 0;
 }
+static void decompAux(grafo g, verticePP* vertices, verticePP r, int c, int tam ) {
+    r.estado = 1;
+    for (int i = 0; i < tam; i++) {
+        if ( agedge(g, r.nodo, vertices[i].nodo, NULL, FALSE)) {
+            if (!vertices[i].estado) {
+                decompAux(g, vertices, vertices[i], c, tam);
+            }
+        }
+    }
+    r.componente = c;
+    r.estado = 2;
+}
 
 grafo decompoe(grafo g) {
 
@@ -39,7 +58,6 @@ grafo decompoe(grafo g) {
     vertice pilha[tam];
     int j = 0;
     vertice visitados[tam];
-    int k = 0;
 
     for (vertice atual = agfstnode(g); atual; atual = agnxtnode(g, atual)) {
 
@@ -76,6 +94,20 @@ grafo decompoe(grafo g) {
         printf("%s ", agnameof(visitados[i]));
     }
     printf("\n");
+
+    verticePP* vertices = malloc(sizeof(verticePP) * tam);
+
+    for (int i = 0; i < tam; i++) {
+        vertices[i].nodo = visitados[i];
+        vertices[i].componente = vertices[i].estado = 0; 
+    }
+    int c = 0;
+
+    for (int i = 0; i < tam; i++) {
+        if (!vertices[i].estado) {
+            decompAux(g, vertices, vertices[i], ++c, tam);
+        }
+    }
 
 
     return g;

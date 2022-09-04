@@ -1,0 +1,337 @@
+make all --print-data-base --no-builtin-variables --no-builtin-rules --question
+# GNU Make 4.2.1
+# Built for x86_64-pc-linux-gnu
+# Copyright (C) 1988-2016 Free Software Foundation, Inc.
+# License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+# This is free software: you are free to change and redistribute it.
+# There is NO WARRANTY, to the extent permitted by law.
+
+# Make data base, printed on Tue Jul 26 09:32:55 2022
+
+# Variables
+
+# automatic
+<D = $(patsubst %/,%,$(dir $<))
+# environment
+RUBY_VERSION = ruby-3.0.0
+# environment
+DESKTOP_SESSION = cinnamon
+# default
+.SHELLFLAGS := -c
+# automatic
+?F = $(notdir $?)
+# environment
+XDG_SESSION_CLASS = user
+# environment
+XDG_SESSION_TYPE = x11
+# environment
+NVM_INC = /home/heise/.nvm/versions/node/v17.7.1/include/node
+# automatic
+?D = $(patsubst %/,%,$(dir $?))
+# environment
+GTK3_MODULES = xapp-gtk3-module
+# environment
+rvm_path = /home/heise/.rvm
+# automatic
+@D = $(patsubst %/,%,$(dir $@))
+# environment
+XAUTHORITY = /home/heise/.Xauthority
+# environment
+GDMSESSION = cinnamon
+# default
+MAKE_VERSION := 4.2.1
+# makefile
+CURDIR := /home/heise/biblioteca-de-grafos
+# makefile
+SHELL = /bin/sh
+# environment
+GDM_LANG = pt_BR
+# environment
+VSCODE_NLS_CONFIG = {"locale":"pt-br","availableLanguages":{},"_languagePackSupport":true}
+# environment
+_ = /usr/share/code/code
+# makefile (from 'makefile', line 1)
+CFLAGS = -std=c99 -pipe -ggdb3 -Wstrict-overflow=5 -fstack-protector-all -W -Wall -Wextra -Wbad-function-cast -Wcast-align -Wcast-qual -Wconversion -Wfloat-equal -Wformat-y2k -Winit-self -Winline -Winvalid-pch -Wmissing-declarations -Wmissing-field-initializers -Wmissing-format-attribute -Wmissing-include-dirs -Wmissing-noreturn -Wmissing-prototypes -Wnested-externs -Wnormalized=nfc -Wold-style-definition -Woverlength-strings -Wpacked -Wpadded -Wpointer-arith -Wredundant-decls -Wshadow -Wsign-compare -Wstack-protector -Wstrict-aliasing=2 -Wstrict-prototypes -Wundef -Wunsafe-loop-optimizations -Wvolatile-register-var -Wwrite-strings
+# environment
+XDG_CONFIG_DIRS = /etc/xdg/xdg-cinnamon:/etc/xdg
+# environment
+GTK_OVERLAY_SCROLLING = 1
+# makefile (from 'makefile', line 1)
+MAKEFILE_LIST :=  makefile
+# automatic
+@F = $(notdir $@)
+# environment
+GIO_LAUNCHED_DESKTOP_FILE = /usr/share/applications/code.desktop
+# 'override' directive
+GNUMAKEFLAGS := 
+# environment
+MANDATORY_PATH = /usr/share/gconf/cinnamon.mandatory.path
+# environment
+XDG_DATA_DIRS = /usr/share/cinnamon:/usr/share/gnome:/home/heise/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share
+# environment
+DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
+# environment
+VSCODE_CWD = /home/heise
+# environment
+XDG_SESSION_PATH = /org/freedesktop/DisplayManager/Session0
+# default
+MAKE_HOST := x86_64-pc-linux-gnu
+# environment
+PATH = /home/heise/.cabal/bin:/home/heise/.ghcup/bin:/home/heise/.nvm/versions/node/v17.7.1/bin:/home/heise/.rvm/gems/ruby-3.0.0/bin:/home/heise/.rvm/gems/ruby-3.0.0@global/bin:/home/heise/.rvm/rubies/ruby-3.0.0/bin:/home/heise/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/heise/.rvm/bin:/home/heise/.rvm/bin
+# environment
+GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
+# environment
+LSCOLORS = Gxfxcxdxbxegedabagacad
+# environment
+SESSION_MANAGER = local/raven:@/tmp/.ICE-unix/12487,unix/raven:/tmp/.ICE-unix/12487
+# environment
+rvm_stored_umask = 002
+# environment
+XDG_RUNTIME_DIR = /run/user/1000
+# environment
+NVM_BIN = /home/heise/.nvm/versions/node/v17.7.1/bin
+# environment
+ELECTRON_RUN_AS_NODE = 1
+# default
+.FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
+# environment
+XDG_GREETER_DATA_DIR = /var/lib/lightdm-data/heise
+# environment
+LS_COLORS = 
+# environment
+XDG_SESSION_DESKTOP = cinnamon
+# environment
+SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
+# environment
+GIO_LAUNCHED_DESKTOP_FILE_PID = 285976
+# automatic
+%F = $(notdir $%)
+# environment
+DISPLAY = :0
+# environment
+rvm_bin_path = /home/heise/.rvm/bin
+# environment
+PWD = /home/heise/biblioteca-de-grafos
+# environment
+QT_QPA_PLATFORMTHEME = qt5ct
+# default
+.LOADED := 
+# environment
+GEM_HOME = /home/heise/.rvm/gems/ruby-3.0.0
+# environment
+XDG_SEAT = seat0
+# environment
+SSH_AGENT_PID = 12559
+# environment
+ORIGINAL_XDG_CURRENT_DESKTOP = X-Cinnamon
+# environment
+GTK_MODULES = gail:atk-bridge
+# environment
+VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
+# environment
+HOME = /home/heise
+# environment
+VSCODE_CODE_CACHE_PATH = /home/heise/.config/Code/CachedData/b06ae3b2d2dbfe28bca3134cc6be65935cdfea6a
+# environment
+LOGNAME = heise
+# environment
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
+# environment
+NVM_CD_FLAGS = -q
+# environment
+ZSH = /home/heise/.oh-my-zsh
+# environment
+VSCODE_HANDLES_UNCAUGHT_ERRORS = true
+# environment
+GNOME_DESKTOP_SESSION_ID = this-is-deprecated
+# automatic
+^D = $(patsubst %/,%,$(dir $^))
+# environment
+XDG_VTNR = 7
+# environment
+MAKELEVEL := 0
+# environment
+GEM_PATH = /home/heise/.rvm/gems/ruby-3.0.0:/home/heise/.rvm/gems/ruby-3.0.0@global
+# default
+MAKE = $(MAKE_COMMAND)
+# default
+MAKECMDGOALS := all
+# environment
+IRBRC = /home/heise/.rvm/rubies/ruby-3.0.0/.irbrc
+# environment
+SHLVL = 0
+# environment
+XDG_SESSION_ID = c2
+# environment
+USER = heise
+# makefile
+.DEFAULT_GOAL := all
+# environment
+XDG_CURRENT_DESKTOP = X-Cinnamon
+# environment
+rvm_version = 1.29.12 (latest)
+# environment
+LESS = -R
+# automatic
+%D = $(patsubst %/,%,$(dir $%))
+# default
+MAKE_COMMAND := make
+# environment
+OLDPWD = /home/heise
+# default
+.VARIABLES := 
+# automatic
+*F = $(notdir $*)
+# environment
+LANGUAGE = pt_BR:pt:en
+# environment
+XDG_SEAT_PATH = /org/freedesktop/DisplayManager/Seat0
+# environment
+VSCODE_IPC_HOOK = /run/user/1000/vscode-f7028a01-1.69.1-main.sock
+# makefile
+MAKEFLAGS = pqrR
+# environment
+MFLAGS = -pqrR
+# automatic
+*D = $(patsubst %/,%,$(dir $*))
+# environment
+NVM_DIR = /home/heise/.nvm
+# automatic
++D = $(patsubst %/,%,$(dir $+))
+# environment
+GDK_BACKEND = x11
+# environment
+rvm_user_install_flag = 1
+# automatic
++F = $(notdir $+)
+# environment
+CINNAMON_VERSION = 5.2.7
+# environment
+QT_ACCESSIBILITY = 1
+# environment
+DEFAULTS_PATH = /usr/share/gconf/cinnamon.default.path
+# default
+MAKEFILES := 
+# automatic
+<F = $(notdir $<)
+# environment
+PAGER = less
+# environment
+LC_ALL = C
+# environment
+GJS_DEBUG_TOPICS = JS ERROR;JS LOG
+# automatic
+^F = $(notdir $^)
+# environment
+rvm_prefix = /home/heise
+# default
+SUFFIXES := 
+# environment
+CHROME_DESKTOP = code-url-handler.desktop
+# default
+.INCLUDE_DIRS = /usr/include /usr/local/include /usr/include
+# environment
+GJS_DEBUG_OUTPUT = stderr
+# environment
+rvm_loaded_flag = 1
+# default
+.RECIPEPREFIX := 
+# environment
+LANG = C
+# environment
+VSCODE_PID = 285976
+# environment
+MY_RUBY_HOME = /home/heise/.rvm/rubies/ruby-3.0.0
+# variable set hash-table stats:
+# Load=116/1024=11%, Rehash=0, Collisions=9/141=6%
+
+# Pattern-specific Variable Values
+
+# No pattern-specific variable values.
+
+# Directories
+
+# . (device 56, inode 40239695): 14 files, no impossibilities.
+
+# 14 files, no impossibilities in 1 directories.
+
+# Implicit Rules
+
+# No implicit rules.
+
+# Files
+
+all: teste
+#  Phony target (prerequisite of .PHONY).
+#  Command line target.
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has been updated.
+#  Successfully updated.
+
+.PHONY: all clean
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+makefile:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-18 10:49:00.774742311
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+.DEFAULT:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+clean:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+ 
+#  recipe to execute (from 'makefile', line 49):
+	$(RM) teste *.o
+
+# Not a target:
+grafo.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-25 11:32:09.533965721
+#  File has been updated.
+#  Successfully updated.
+
+teste: teste.o grafo.o
+#  Implicit rule search has not been done.
+#  Last modified 2022-07-25 11:37:49.568825389
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'makefile', line 45):
+	$(CC) $(CFLAGS) -o $@ $^ -lcgraph
+
+# Not a target:
+teste.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-25 11:37:49.544824906
+#  File has been updated.
+#  Successfully updated.
+
+# files hash-table stats:
+# Load=9/1024=1%, Rehash=0, Collisions=0/27=0%
+# VPATH Search Paths
+
+# No 'vpath' search paths.
+
+# No general ('VPATH' variable) search path.
+
+# strcache buffers: 1 (0) / strings = 21 / storage = 173 B / avg = 8 B
+# current buf: size = 8162 B / used = 173 B / count = 21 / avg = 8 B
+
+# strcache performance: lookups = 36 / hit rate = 41%
+# hash-table stats:
+# Load=21/8192=0%, Rehash=0, Collisions=1/36=3%
+# Finished Make data base on Tue Jul 26 09:32:55 2022
+
+ 
