@@ -40,8 +40,6 @@ grafo decompoe(grafo g) {
     int j = 0;
     vertice visitados[tam];
     int k = 0;
-    vertice pos[tam];
-    pos[k++] = agfstnode(g);
 
     for (vertice atual = agfstnode(g); atual; atual = agnxtnode(g, atual)) {
 
@@ -60,7 +58,6 @@ grafo decompoe(grafo g) {
                     if ( agedge(g, topo, ver, NULL, FALSE)) {
                         
                         if ( !buscaVetor(visitados, ver, j) ) {
-                            pos[k++] = ver;
                             pilha[i] = ver; 
                             i++;
                         } 
@@ -74,9 +71,11 @@ grafo decompoe(grafo g) {
         }
     }
 
+    printf("pos-order?:\n");
     for (int i = 0; i < j; i++) {
         printf("%s ", agnameof(visitados[i]));
     }
+    printf("\n");
 
 
     return g;
