@@ -9,7 +9,9 @@ int main(void) {
 
   decompoe(g);
 
-  //escreve_grafo(g);
+  for (grafo sub = agfstsubg(g); sub; sub = agnxtsubg(sub)) {
+      escreve_grafo(sub);
+  }
 
   destroi_grafo(g);
 

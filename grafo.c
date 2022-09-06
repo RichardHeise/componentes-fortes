@@ -93,7 +93,6 @@ vertice *reverte_ordem(vertice *pos, int tam_pos) {
     return reverso;
 }
 
-
 //------------------------------------------------------------------------------
 
 grafo decompoe(grafo g) {
@@ -123,7 +122,7 @@ grafo decompoe(grafo g) {
         vertices[tam_vpp++].nodo = pos[i];
     }
 
-    int n_componentes = 1;
+    int n_componentes = 0;
     for (int i = 0; i < tam_vpp; i++) {
         if ( decomp(g, vertices, &vertices[i], n_componentes, tam_vpp) ) {
             n_componentes++;
@@ -132,20 +131,21 @@ grafo decompoe(grafo g) {
 
     grafo* subgrafos = malloc(n_componentes * sizeof(grafo));
 
-    for (int i = 0; i < n_componentes-1; i++){
+    for (int i = 0; i < n_componentes; i++){
         subgrafos[i] = agsubg(g, NULL, TRUE);
     }
 
-    for (int i = 0; i < tam_vpp; i++) {
-        for (int j = 0; j < tam_vpp; j++) {
-            if ( agedge(g, vertices[i].nodo, vertices[j].nodo, NULL, FALSE) && vertices[i].componente == vertices[j].componente) {
-                agedge(subgrafos[vertices[i].componente - 1], agnode(g, agnameof(vertices[i].nodo), FALSE), agnode(g, agnameof(vertices[j].nodo), FALSE), NULL, TRUE);
+    if (n_componentes == 1) {
+        subgrafos[0] = g;
+    } else {
+        for (int i = 0; i < tam_vpp; i++) {
+            for (int j = 0; j < tam_vpp; j++) {
+                if ( agedge(g, vertices[i].nodo, vertices[j].nodo, NULL, FALSE) && vertices[i].componente == vertices[j].componente) {
+                    agedge(subgrafos[vertices[i].componente], agnode(g, agnameof(vertices[i].nodo), FALSE), agnode(g, agnameof(vertices[j].nodo), FALSE), NULL, TRUE);
+                }
             }
         }
-    }
 
-    for (int i = 0; i < n_componentes-1; i++) {
-        escreve_grafo(subgrafos[i]);
     }
 
     return g;
