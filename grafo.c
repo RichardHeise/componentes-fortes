@@ -39,27 +39,60 @@ static int buscaVetor(vertice vetor[], vertice elem, int tam) {
 
 //------------------------------------------------------------------------------
 
-static void decompAux(grafo g, verticePP* vertices, verticePP* r, int c, int tam) {
+static int decomp(grafo g, verticePP* vertices, verticePP* r, int c, int tam) {
 
     if (r->estado == 2) {
-        return;
+        return 0;
     }
 
     r->estado = 1;
 
     for (int i = 0; i < tam; i++) {
-        if ( agedge(g, vertices[i].nodo, r->nodo , NULL, FALSE) ) {
+        if ( agedge(g, r->nodo, vertices[i].nodo, NULL, FALSE) ) {
 
             if (vertices[i].estado == 0) {
-                decompAux(g, vertices, &vertices[i], c, tam);
+                decomp(g, vertices, &vertices[i], c, tam);
             } 
         }
     }
 
     r->componente = c;
     r->estado = 2;
+
+    return 1;
     
 }
+
+//------------------------------------------------------------------------------
+
+static void pos_ordem_reversa(grafo g, vertice ver, vertice* visitados, int* tam_v, vertice* pos, int* tam_pos) {
+
+    if (buscaVetor(visitados, ver, *tam_v)) return;
+
+    visitados[*tam_v] = ver;
+    *tam_v += 1;
+
+    for (vertice atual = agfstnode(g); atual; atual = agnxtnode(g, atual)) {
+        if ( agedge(g, ver, atual, NULL, FALSE) ) {
+            pos_ordem_reversa(g, atual, visitados, tam_v, pos, tam_pos);
+        }
+    }
+    pos[*tam_pos] = ver;
+    *tam_pos += 1;
+}
+
+//------------------------------------------------------------------------------
+
+vertice *reverte_ordem(vertice *pos, int tam_pos) {
+
+    vertice* reverso = malloc(sizeof(vertice) * tam_pos);
+
+    for (int i = 0; i < tam_pos; i++)
+        reverso[i] = pos[tam_pos-1 - i];
+
+    return reverso;
+}
+
 
 //------------------------------------------------------------------------------
 
@@ -69,74 +102,51 @@ grafo decompoe(grafo g) {
 
     int tam = agnnodes(g);
 
-    vertice pilha[tam];
-
-    int j = 0;
+    int tam_vis = 0;
     vertice visitados[tam];
-    int k;
+    memset(visitados, 0, tam);
+
+    int tam_pos = 0;
     vertice pos[tam];
+    memset(pos, 0, tam);
 
     for (vertice atual = agfstnode(g); atual; atual = agnxtnode(g, atual)) {
-
-        int i = 0;
-        
-        memset(pos, 0, sizeof(vertice));
-        k = 0;
-        
-        memset(pilha, 0, sizeof(vertice));
-        pilha[i] = atual;
-        i++;
-
-        while (i) {
-
-            i--;
-            vertice topo = pilha[i];
-
-            if ( !buscaVetor(visitados, topo, j) ) {
-
-                for (vertice ver = agfstnode(g); ver; ver = agnxtnode(g, ver)) {
-                    if ( agedge(g, topo, ver, NULL, FALSE) ) {
-                        
-                        if ( !buscaVetor(visitados, ver, j) ) {
-                            pilha[i] = ver; 
-                            i++;
-                        } 
-                    }
-                }
-
-                pos[k++] = topo;
-                visitados[j] = topo;
-                j++;
-            }
-        }
-
+        pos_ordem_reversa(g, atual, visitados, &tam_vis, pos, &tam_pos);
     }
 
-    printf("pos-order?:\n");
-    for (int i = 0; i < tam; i++) {
-        printf("%s ", agnameof(pos[i]));
-    }
-    printf("\n");
-
+    vertice* revertido = reverte_ordem(pos, tam_pos);
     verticePP* vertices = malloc(sizeof(verticePP) * tam);
 
-    for (int i = 0; i < tam; i++) {
-        vertices[i].nodo = visitados[i];
-        vertices[i].componente = vertices[i].estado = 0; 
+    int tam_vpp = 0;
+    for (int i = 0; i < tam_pos; i++) {
+        vertices[tam_vpp].componente = vertices[tam_vpp].estado = 0;
+        vertices[tam_vpp++].nodo = pos[i];
     }
-    int c = 0;
 
-    for (int i = 0; i < tam; i++) {
-        if (!vertices[i].estado) {
-            c += 1;
-            decompAux(g, vertices, &vertices[i], c, tam);
+    int n_componentes = 1;
+    for (int i = 0; i < tam_vpp; i++) {
+        if ( decomp(g, vertices, &vertices[i], n_componentes, tam_vpp) ) {
+            n_componentes++;
         }
     }
 
-    for (int i = 0; i < tam; i++) {
-        printf("vértice: %s, estado: %d, componente: %d\n", agnameof(vertices[i].nodo), vertices[i].estado, vertices[i].componente);
+    grafo* subgrafos = malloc(n_componentes * sizeof(grafo));
+
+    for (int i = 0; i < n_componentes-1; i++){
+        subgrafos[i] = agsubg(g, NULL, TRUE);
+    }
+
+    for (int i = 0; i < tam_vpp; i++) {
+        for (int j = 0; j < tam_vpp; j++) {
+            if ( agedge(g, vertices[i].nodo, vertices[j].nodo, NULL, FALSE) && vertices[i].componente == vertices[j].componente) {
+                agedge(subgrafos[vertices[i].componente - 1], agnode(g, agnameof(vertices[i].nodo), FALSE), agnode(g, agnameof(vertices[j].nodo), FALSE), NULL, TRUE);
+            }
+        }
+    }
+
+    for (int i = 0; i < n_componentes-1; i++) {
+        escreve_grafo(subgrafos[i]);
     }
 
     return g;
 }
-
