@@ -1,3 +1,6 @@
+// Richard Fernando Heise Ferreira GRR20191053
+
+// Boas férias, Renatão, Murilinho e Pachecão!
 #include <stdio.h>
 #include <stdlib.h>
 #include "grafo.h"
@@ -158,7 +161,7 @@ grafo decompoe(grafo g) {
         // Caso g seja trivial
         subgrafos[0] = g;
     } else {
-        
+
         // Caso g não seja trivial
         for (int i = 0; i < tam_vpp; i++) {
             for (int j = 0; j < tam_vpp; j++) {
